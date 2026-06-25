@@ -83,8 +83,10 @@ ${code}
   "timeSaved": "X minutes vs manual review"
 }`;
 
+    const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
     try {
-      const response = await fetch('http://localhost:5000/api/claude', {
+      const response = await fetch(`${apiBase}/api/claude`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -100,7 +102,7 @@ ${code}
       }
     } catch (err) {
       console.error(err);
-      setError('Something went wrong. Please check if backend server is running on port 5000 and try again.');
+      setError('Something went wrong. Please check if backend server is running and try again.');
     } finally {
       setLoading(false);
     }
